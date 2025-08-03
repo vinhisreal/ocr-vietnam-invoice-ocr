@@ -1,0 +1,4 @@
+data:
+  images_dir: "vietnamese-receipts-mc-ocr-2021/text_recognition_mcocr_data/text_recognition_mcocr_data"
+  train_file: "vietnamese-receipts-mc-ocr-2021/text_recognition_train_data.txt"
+  val_file: "vietnamese-receipts-mc-ocr-2021/text_recognition_val_data.txt"

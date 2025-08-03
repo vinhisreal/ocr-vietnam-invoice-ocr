@@ -33,30 +33,6 @@ def collate_fn_ctc(batch):
 
     return images, targets, texts
 
-
-def levenshtein_distance(s1: str, s2: str) -> int:
-    """
-    Tính khoảng cách Levenshtein giữa 2 chuỗi (số phép thêm/xóa/thay đổi cần thiết).
-    """
-    if len(s1) < len(s2):
-        return levenshtein_distance(s2, s1)
-
-    if len(s2) == 0:
-        return len(s1)
-
-    previous_row = list(range(len(s2) + 1))
-    for i, c1 in enumerate(s1):
-        current_row = [i + 1]
-        for j, c2 in enumerate(s2):
-            insert = previous_row[j + 1] + 1
-            delete = current_row[j] + 1
-            substitute = previous_row[j] + (c1 != c2)
-            current_row.append(min(insert, delete, substitute))
-        previous_row = current_row
-
-    return previous_row[-1]
-
-
 def ctc_greedy_decode(log_probs: torch.Tensor, tokenizer, blank_token: int = 0):
     """
     Thực hiện greedy decoding cho output của mô hình CTC.
